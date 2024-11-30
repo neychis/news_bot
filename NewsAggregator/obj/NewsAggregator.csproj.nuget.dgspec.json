@@ -13,7 +13,6 @@
         "packagesPath": "/Users/neychis/.nuget/packages/",
         "outputPath": "/Users/neychis/Documents/GitHub/news_bot/NewsAggregator/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/neychis/.nuget/NuGet/NuGet.Config"
         ],
@@ -57,6 +56,12 @@
               "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.0, )"
             },

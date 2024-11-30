@@ -10,3 +10,5 @@ NewsAggregator/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
 NewsAggregator/obj/Debug/net8.0/NewsAggregator.GlobalUsings.g.cs
 NewsAggregator/obj/Debug/net8.0/NewsAggregator.AssemblyInfo.cs
 NewsAggregator/.DS_Store
+/NewsAggregator/obj/Debug
+/NewsAggregator/bin/Debug
