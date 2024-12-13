@@ -12,3 +12,6 @@ NewsAggregator/obj/Debug/net8.0/NewsAggregator.AssemblyInfo.cs
 NewsAggregator/.DS_Store
 /NewsAggregator/obj/Debug
 /NewsAggregator/bin/Debug
+.DS_Store
+NewsAggregator/obj/NewsAggregator.csproj.nuget.dgspec.json
+NewsAggregator/obj/NewsAggregator.csproj.nuget.g.props
