@@ -1,7 +1,7 @@
-namespace NewsAggregator;
+namespace NewsAggregator.Models;
 
 /// <summary>
-/// Log for acticles
+/// Log for articles
 /// </summary>
 public class ArticleLog
 {
@@ -13,6 +13,14 @@ public class ArticleLog
     /// Article title
     /// </summary>
     public string Title { get; set; }
+    /// <summary>
+    /// Comma separated list of article's keywords
+    /// </summary>
+    public string Keywords { get; set; }
+    /// <summary>
+    /// The article summary
+    /// </summary>
+    public string Summary { get; set; }
     /// <summary>
     /// Url to article
     /// </summary>

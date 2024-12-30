@@ -15,3 +15,6 @@ NewsAggregator/.DS_Store
 .DS_Store
 NewsAggregator/obj/NewsAggregator.csproj.nuget.dgspec.json
 NewsAggregator/obj/NewsAggregator.csproj.nuget.g.props
+NewsAggregator/Migrations/20241230134943_InitialCreate.Designer.cs
+NewsAggregator/Migrations/20241130193319_InitialCreate.Designer.cs
+NewsAggregator/Migrations/20241130193319_InitialCreate.Designer.cs

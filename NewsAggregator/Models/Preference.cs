@@ -1,4 +1,4 @@
-namespace NewsAggregator;
+namespace NewsAggregator.Models;
 
 /// <summary>
 /// User preferences
@@ -17,7 +17,6 @@ public class Preference
     /// ID of user which has this preference
     /// </summary>
     public int UserId { get; set; }
-
 
     /// <summary>
     /// User which has this preference.

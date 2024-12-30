@@ -1,4 +1,4 @@
-namespace NewsAggregator;
+namespace NewsAggregator.Models;
 
 /// <summary>
 /// Class which specifies the user properties

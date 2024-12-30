@@ -22,7 +22,7 @@ namespace NewsAggregator.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("NewsAggregator.ArticleLog", b =>
+            modelBuilder.Entity("NewsAggregator.Models.ArticleLog", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,6 +32,14 @@ namespace NewsAggregator.Migrations
 
                     b.Property<DateTime>("AccessedDt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Keywords")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -46,7 +54,7 @@ namespace NewsAggregator.Migrations
                     b.ToTable("ArticleLogs");
                 });
 
-            modelBuilder.Entity("NewsAggregator.Preference", b =>
+            modelBuilder.Entity("NewsAggregator.Models.Preference", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +76,7 @@ namespace NewsAggregator.Migrations
                     b.ToTable("Preferences");
                 });
 
-            modelBuilder.Entity("NewsAggregator.User", b =>
+            modelBuilder.Entity("NewsAggregator.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,9 +97,9 @@ namespace NewsAggregator.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("NewsAggregator.Preference", b =>
+            modelBuilder.Entity("NewsAggregator.Models.Preference", b =>
                 {
-                    b.HasOne("NewsAggregator.User", "User")
+                    b.HasOne("NewsAggregator.Models.User", "User")
                         .WithMany("Preferences")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -100,7 +108,7 @@ namespace NewsAggregator.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NewsAggregator.User", b =>
+            modelBuilder.Entity("NewsAggregator.Models.User", b =>
                 {
                     b.Navigation("Preferences");
                 });
