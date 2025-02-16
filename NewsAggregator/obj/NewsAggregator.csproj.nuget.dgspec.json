@@ -13,6 +13,7 @@
         "packagesPath": "/Users/neychis/.nuget/packages/",
         "outputPath": "/Users/neychis/Documents/GitHub/news_bot/NewsAggregator/obj/",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/neychis/.nuget/NuGet/NuGet.Config"
         ],
