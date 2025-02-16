@@ -19,3 +19,7 @@ NewsAggregator/Migrations/20241230134943_InitialCreate.Designer.cs
 NewsAggregator/Migrations/20241130193319_InitialCreate.Designer.cs
 NewsAggregator/Migrations/20241130193319_InitialCreate.Designer.cs
 NewsAggregator/Folder.DotSettings.user
+NewsAggregator/obj/NewsAggregator.csproj.EntityFrameworkCore.targets
+NewsAggregator/obj/NewsAggregator.csproj.nuget.g.targets
+NewsAggregator/obj/project.assets.json
+NewsAggregator/obj/project.packagespec.json
