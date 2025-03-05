@@ -3,16 +3,15 @@ services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "StrongPassword123!"
+      ACCEPT_EULA: "${ACCEPT_EULA}"
+      SA_PASSWORD: "${SA_PASSWORD}"
     ports:
       - "1433:1433"
 
   newsaggregator-container:
-    // This tells Compose to build an image from the Dockerfile in the current directory rather than pulling a pre-built image.
     build: .
-    environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=MyDb;User Id=sa;Password=StrongPassword123!;TrustServerCertificate=True;"
+    env_file:
+      - .env
     depends_on:
       - sqlserver
     ports:

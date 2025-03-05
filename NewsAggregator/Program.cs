@@ -6,15 +6,14 @@ using NewsAggregator.Rss;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<NewsAggregatorContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlServer(builder.Configuration.GetDatabaseConnectionString())
 );
 
 builder.Services.AddHttpClient();
 
 builder.Services.AddHangfire(config =>
-{
-    config.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+    config.UseSqlServerStorage(builder.Configuration.GetDatabaseConnectionString())
+);
 
 builder.Services.AddHangfireServer();
 builder.Services.AddControllers();

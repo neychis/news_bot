@@ -23,3 +23,4 @@ NewsAggregator/obj/NewsAggregator.csproj.EntityFrameworkCore.targets
 NewsAggregator/obj/NewsAggregator.csproj.nuget.g.targets
 NewsAggregator/obj/project.assets.json
 NewsAggregator/obj/project.packagespec.json
+NewsAggregator/.env
