@@ -30,6 +30,12 @@ if (app.Environment.IsDevelopment())
                     new BasicAuthAuthorizationUser
                     {
                         Login = "admin",
+                        PasswordClear = "admin"
+                    }
+                }
+            })
+        }
+    });
     app.MapHangfireDashboard();
 }
 
