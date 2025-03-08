@@ -27,6 +27,9 @@ public static class DependencyInjectionExtensions
         services.AddHangfireServer();
 
         services.AddControllers();
+
+        services.AddScoped<IRssNewsService, RssNewsService>();
+        services.AddScoped<IScheduledRssJobs, ScheduledRssJobs>();
         // services.AddScoped<ITelegramService, TelegramService>();
         // services.AddScoped<IScheduledNewsDigest, ScheduledNewsDigest>();
         // services.AddScoped<ITelegramBotHandler, TelegramBotHandler>();
