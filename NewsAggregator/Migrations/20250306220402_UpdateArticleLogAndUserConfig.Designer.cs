@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NewsAggregator;
 
@@ -11,9 +12,11 @@ using NewsAggregator;
 namespace NewsAggregator.Migrations
 {
     [DbContext(typeof(NewsAggregatorContext))]
-    partial class NewsAggregatorContextModelSnapshot : ModelSnapshot
+    [Migration("20250306220402_UpdateArticleLogAndUserConfig")]
+    partial class UpdateArticleLogAndUserConfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +61,7 @@ namespace NewsAggregator.Migrations
                     b.HasIndex("Url")
                         .IsUnique();
 
-                    b.ToTable("ArticleLogs", (string)null);
+                    b.ToTable("ArticleLogs");
                 });
 
             modelBuilder.Entity("NewsAggregator.Models.Preference", b =>
@@ -80,7 +83,7 @@ namespace NewsAggregator.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Preferences", (string)null);
+                    b.ToTable("Preferences");
                 });
 
             modelBuilder.Entity("NewsAggregator.Models.User", b =>
@@ -100,7 +103,7 @@ namespace NewsAggregator.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("NewsAggregator.Models.Preference", b =>

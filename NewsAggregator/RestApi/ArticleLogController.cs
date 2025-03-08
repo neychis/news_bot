@@ -13,7 +13,7 @@ public class ArticleLogController(NewsAggregatorContext dbContext): ControllerBa
     /// </summary>
     /// <param name="keywords">A list of keywords</param>
     [HttpGet]
-    public async Task<IActionResult> GetArticles(ICollection<string> keywords)
+    public async Task<IActionResult> GetArticlesByKeywords(ICollection<string> keywords)
     {
         List<ArticleLog> articles = await dbContext.ArticleLogs
             .Where(article => keywords.Any(keyword => article.Keywords.Contains(keyword)))

@@ -9,18 +9,20 @@ public class User
     /// ID of user
     /// </summary>
     public int Id { get; set; }
+    
     /// <summary>
     /// User name
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
+    
     /// <summary>
-    /// User e-mail
+    /// ID of the chat where to send the messages to user
     /// </summary>
-    public string Email { get; set; }
+    public long ChatId { get; set; }
 
     /// <summary>
     /// User preferences collection
     /// Navigation property
     /// </summary>
-    public ICollection<Preference> Preferences { get; set; }
+    public List<Preference>? Preferences { get; set; }
 }

@@ -1,24 +1,14 @@
 using Hangfire;
+using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.EntityFrameworkCore;
 using NewsAggregator;
-using NewsAggregator.Rss;
+using NewsAggregator.Rss.Interfaces;
+using NewsAggregator.Telegram.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("http://*:5001");
 
-builder.Services.AddDbContext<NewsAggregatorContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetDatabaseConnectionString())
-);
-
-builder.Services.AddHttpClient();
-
-builder.Services.AddHangfire(config =>
-    config.UseSqlServerStorage(builder.Configuration.GetDatabaseConnectionString())
-);
-
-builder.Services.AddHangfireServer();
-builder.Services.AddControllers();
-builder.Services.AddScoped<IRssNewsService, RssNewsService>();
-builder.Services.AddScoped<IScheduledRssJobs, ScheduledRssJobs>();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -26,7 +16,21 @@ app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapHangfireDashboard("/hangfire"); 
+    app.UseHangfireDashboard("/hangfire", new DashboardOptions
+    {
+        Authorization = new[]
+        {
+            new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions
+            {
+                SslRedirect = false,
+                RequireSsl = false,
+                LoginCaseSensitive = true,
+                Users = new[]
+                {
+                    new BasicAuthAuthorizationUser
+                    {
+                        Login = "admin",
+    app.MapHangfireDashboard();
 }
 
 app.Lifetime.ApplicationStarted.Register(() =>
@@ -34,11 +38,17 @@ app.Lifetime.ApplicationStarted.Register(() =>
     using var scope = app.Services.CreateScope();
     var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
     var scheduledRssJobs = scope.ServiceProvider.GetRequiredService<IScheduledRssJobs>();
+    
+    recurringJobManager.AddOrUpdate(
+        "cleanup-old-articles",
+        () => scheduledRssJobs.CleanOldArticles(),
+        "0 3 * * *"
+    );
 
     recurringJobManager.AddOrUpdate(
-        "scheduledRssJobs",
+        "fetch-today-rss-articles",
         () => scheduledRssJobs.FetchAndStoreRssArticles(),
-        Cron.Daily
+        "7 16 * * *"
     );
 });
 

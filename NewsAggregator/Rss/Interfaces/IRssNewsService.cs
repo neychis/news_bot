@@ -1,6 +1,6 @@
 using NewsAggregator.Models;
 
-namespace NewsAggregator.Rss;
+namespace NewsAggregator.Rss.Interfaces;
 
 public interface IRssNewsService
 {

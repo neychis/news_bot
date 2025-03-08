@@ -1,5 +1,6 @@
 using System.ServiceModel.Syndication;
 using NewsAggregator.Models;
+using NewsAggregator.Rss.Interfaces;
 
 namespace NewsAggregator.Rss;
 
@@ -10,7 +11,7 @@ public class RssNewsService(IHttpClientFactory httpClientFactory): IRssNewsServi
 {
     private const string RssFeedUrl = "https://elementy.ru/rss/news";
 
-    /// /// <inheritdoc />
+    /// <inheritdoc />
     public async Task<List<ArticleLog>> FetchArticlesAsync()
     {
         HttpClient client = httpClientFactory.CreateClient();
@@ -19,13 +20,15 @@ public class RssNewsService(IHttpClientFactory httpClientFactory): IRssNewsServi
 
         await using var stream = await response.Content.ReadAsStreamAsync();
         using var xmlReader = System.Xml.XmlReader.Create(stream);
+        
+        var today = DateTime.UtcNow.Date;
 
-        SyndicationFeed? feed = SyndicationFeed.Load(xmlReader);
+        var feed = SyndicationFeed.Load(xmlReader).Items.Where(item => item.PublishDate == today).ToList();
         List<ArticleLog> articles = [];
 
-        if (feed != null)
+        if (feed.Count > 0)
         {
-            articles.AddRange(feed.Items.Select(CreateArticleLog));
+            articles.AddRange(feed.Select(CreateArticleLog));
         }
 
         return articles;
